@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use App\Car;
+use App\Trip;
 
 class User extends Authenticatable
 {
@@ -27,4 +29,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function car()
+    {
+        return $this->hasMany(Car::class);
+    }
+
+    public function trip()
+    {
+        return $this->hasManyThrough(Trip::class, Car::class);
+    }
 }
