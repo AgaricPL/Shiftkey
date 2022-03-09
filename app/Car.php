@@ -28,14 +28,14 @@ class Car extends Model
         return Car::auth()->get();
     }
 
-    public function getCar($id)
+    public function getCar()
     {
         return Car::auth();
     }
 
     public function scopeAuth($query)
     {
-        $query->where('user_id', '=', auth()->user()->id ?? 1); ## #@rafal to be deleted ?? 1
+        $query->where('user_id', '=', auth()->user()->id);
     }
 
 }

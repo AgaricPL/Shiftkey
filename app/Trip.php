@@ -10,7 +10,7 @@ use DateTimeInterface;
 class Trip extends Model
 {
     //
-    protected $fillable = ['date', 'miles', 'car_id'];
+    protected $fillable = ['date', 'miles', 'car_id', 'total'];
     protected $dateFormat = 'm/d/Y';
 
     /**
@@ -35,14 +35,4 @@ class Trip extends Model
         return $this->belongsTo(Car::class, null, User::class);
     }
 
-    // public function scopeAuth($query)
-    // {
-    //     $query->whereIn('car_id', function($query){
-    //         $query
-    //             ->select('id')
-    //             ->from(with(new Car)->getTable())
-    //             ->whereIn('user_id', '=', auth()->user()->id ?? 1); ## #@rafal to be deleted ?? 1
-    //     });
-
-    // }
 }

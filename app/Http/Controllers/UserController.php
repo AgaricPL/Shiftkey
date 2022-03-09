@@ -13,7 +13,7 @@ class UserController extends Controller
         $user = User::where('id', '=', auth()->user()->id ?? 1);
         $collection = $user->with('trip.car')->with('trip')->get();
         if (empty($collection) || $collection->isEmpty()) {
-            return response()->json('', 204);
+            return response()->json('No Trips found!', 404);
         }
         return response()->json($collection->toArray(), 201) ;
 

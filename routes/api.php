@@ -32,12 +32,11 @@ Route::get('/user', function (Request $request) {
 // Mock endpoint to get all cars for the logged in user
 
 
-Route::resource('/car', 'CarController');
-
-Route::post('/trip/create', 'TripController@create')->name('trip.create');
-Route::post('/user/trips', 'UserController@trips')->name('user.trips');
 
 Route::middleware(['auth:api'])->group(function () {
+    Route::resource('/car', 'CarController');
+    Route::post('/trip/create', 'TripController@create')->name('trip.create');
+    Route::post('/user/trips', 'UserController@trips')->name('user.trips');
 
 });
 

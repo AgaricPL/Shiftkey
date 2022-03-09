@@ -43,7 +43,7 @@ class CarController extends Controller
         $car->make = $request->make;
         $car->model = $request->model;
         $car->year = $request->year;
-        $car->user_id = auth()->user()->id ?? 1; ## #@rafal to be deleted ?? 1
+        $car->user_id = auth()->user()->id;
         try {
             $car->save();
         } catch (Exception $e) {
@@ -65,7 +65,7 @@ class CarController extends Controller
         $trips = Trip::where('car_id', '=', $id)->pluck('miles');
         $carArray['trip_miles'] = $trips->sum();
         $carArray['trip_count'] = $trips->count();
-        return response($carArray, 200);
+        return response()->json($carArray, 200);
     }
 
     /**
